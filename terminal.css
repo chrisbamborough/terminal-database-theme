@@ -280,32 +280,42 @@ body {
 }
 
 /* Landing Page Styles */
-.landing-page .landing-container {
-  max-width: 700px;
-  margin: 10vh auto;
-  padding: 2rem;
-  border: none;
+.landing-page {
+  text-align: center;
+  padding: 20px;
   background-color: #000000;
-  animation: fadeIn 1s ease-in;
+  color: #0f0;
+  font-family: "JetBrains Mono", "Cascadia Code", "Fira Code", "Courier New",
+    monospace;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.landing-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 20px;
 }
 
-.landing-content {
-  margin-top: 2rem;
+.terminal-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0f0;
 }
 
-.landing-intro {
-  font-size: 1.1rem;
+/* Text Section */
+.landing-text {
+  margin-bottom: 30px;
+}
+
+.landing-text .landing-intro {
+  text-align: right !important; /* Force text justification */
+  font-size: 1.2rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin: 0 auto; /* Center the paragraph if needed */
+}
+
+/* Links Section */
+.landing-links {
+  text-align: center;
 }
 
 .terminal-links ul {
@@ -315,24 +325,27 @@ body {
 }
 
 .terminal-links li {
-  margin-bottom: 1rem;
-}
-
-.terminal-links li:before {
-  content: "> ";
-  color: #0f0;
+  margin-bottom: 15px;
 }
 
 .terminal-link {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  padding: 15px 20px;
+  font-size: 1.2rem;
   color: #0f0;
   text-decoration: none;
-  transition: color 0.2s;
-  border-bottom: 1px solid #0f0;
+  border: 1px solid #0f0; /* Add green border */
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .terminal-link:hover {
-  color: #fff;
-  text-decoration: none;
+  background-color: #0f0;
+  color: black;
+  border-color: #0f0; /* Change border color on hover */
 }
 
 /* Hover image */
@@ -410,4 +423,55 @@ body {
 }
 .pixel-char:nth-child(7n) {
   animation-delay: 0.4s;
+}
+
+/* iPad (768px and below) */
+@media (max-width: 768px) {
+  .landing-container {
+    padding: 30px 15px;
+  }
+
+  .terminal-header h1 {
+    font-size: 2rem;
+  }
+
+  .landing-text .landing-intro {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .terminal-link {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .landing-container {
+    padding: 20px 10px;
+  }
+
+  .terminal-header h1 {
+    font-size: 1.5rem;
+    word-wrap: break-word; /* Allow text to wrap */
+    white-space: normal; /* Ensure text wraps normally */
+  }
+
+  #pixel-name {
+    font-size: 1.2rem; /* Reduce font size for smaller screens */
+    line-height: 1.4; /* Adjust line height for better spacing */
+    word-break: break-word; /* Break long words if necessary */
+    text-align: center; /* Ensure text stays centered */
+  }
+
+  .landing-links {
+    padding: 0 10px; /* Add padding to prevent overlap */
+  }
+
+  .terminal-link {
+    width: 100%; /* Ensure links take up full width */
+    max-width: 100%; /* Prevent links from exceeding the container width */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
 }

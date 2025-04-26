@@ -66,6 +66,33 @@ function terminal_database_shortcode() {
     ob_start();
     ?>
     <div class="terminal-container">
+        <!-- Add search bar, category filter, and tag filter -->
+        <div class="terminal-controls">
+            <input type="text" class="terminal-search" placeholder="Search...">
+            
+            <!-- Category Filter -->
+            <select id="category-filter" class="terminal-filter">
+                <option value="">All Categories</option>
+                <?php
+                $categories = get_categories();
+                foreach ($categories as $category) {
+                    echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
+                }
+                ?>
+            </select>
+
+            <!-- Tag Filter -->
+            <select id="tag-filter" class="terminal-filter">
+                <option value="">All Tags</option>
+                <?php
+                $tags = get_tags();
+                foreach ($tags as $tag) {
+                    echo '<option value="' . esc_attr($tag->slug) . '">' . esc_html($tag->name) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+
         <table class="terminal-table">
             <thead>
                 <tr>
@@ -96,12 +123,16 @@ function terminal_database_shortcode() {
                         // Get tags
                         $post_tags = get_the_tags();
                         $tags_html = '';
+                        $tags_slugs = '';
                         if ($post_tags) {
                             $tags = array();
+                            $tag_slugs = array();
                             foreach ($post_tags as $tag) {
                                 $tags[] = $tag->name;
+                                $tag_slugs[] = $tag->slug;
                             }
                             $tags_html = implode(', ', $tags);
+                            $tags_slugs = implode(' ', $tag_slugs);
                         } else {
                             $tags_html = '—';
                         }
@@ -116,7 +147,7 @@ function terminal_database_shortcode() {
                         
                         $row_class = $has_image ? 'has-image' : '';
                         ?>
-                        <tr data-category="<?php echo esc_attr($category_slug); ?>" class="<?php echo $row_class; ?>" 
+                        <tr data-category="<?php echo esc_attr($category_slug); ?>" data-tags="<?php echo esc_attr($tags_slugs); ?>" class="<?php echo $row_class; ?>" 
                             <?php if ($has_image) : ?>
                             data-image="<?php echo esc_attr($image_url); ?>"
                             <?php endif; ?>>
