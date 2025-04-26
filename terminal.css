@@ -1,0 +1,413 @@
+/* Terminal styling */
+body {
+  background-color: #000000;
+  color: #0f0; /* Classic green terminal color */
+  font-family: "JetBrains Mono", "Cascadia Code", "Fira Code", "Courier New",
+    monospace;
+  line-height: 1.5;
+}
+
+.terminal-container {
+  max-width: 90%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: none; /* Removed border */
+  background-color: #000000;
+}
+
+.terminal-header {
+  border-bottom: 1px solid #0f0; /* Green border */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  /* We'll keep this empty or use it for something else */
+}
+
+.terminal-controls {
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.terminal-search,
+.terminal-filter,
+.terminal-command {
+  background-color: #000000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 0.5rem;
+  font-family: inherit;
+  border-radius: 0;
+}
+
+.terminal-search {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #0f0;
+  font-family: inherit;
+  padding: 0.5rem 0;
+}
+
+/* Remove any borders or background from the search */
+.terminal-search:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Placeholder color */
+.terminal-search::placeholder {
+  color: #0f0;
+  opacity: 0.5;
+}
+
+.terminal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.terminal-table th {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #0f0;
+  color: #0f0;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.terminal-table th:hover {
+  color: #fff; /* White highlight on hover */
+}
+
+.terminal-table th.asc::after {
+  content: " ↑";
+}
+
+.terminal-table th.desc::after {
+  content: " ↓";
+}
+
+.terminal-table td {
+  padding: 0.5rem;
+  border-bottom: 1px dotted #0f0; /* Dotted bottom border */
+}
+
+.terminal-table tr:hover {
+  background-color: #001100; /* Subtle highlight on hover */
+}
+
+.terminal-prompt {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-prompt::before {
+  content: "> ";
+  color: #0f0;
+  margin-right: 0.5rem;
+}
+
+.terminal-command {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #0f0;
+}
+
+/* Make links match the terminal color scheme */
+a,
+a:visited {
+  color: #0f0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal-controls {
+    flex-direction: column;
+  }
+
+  .terminal-table {
+    font-size: 0.8rem;
+  }
+
+  .terminal-container {
+    max-width: 100%;
+    margin: 0;
+    border: none;
+  }
+}
+
+/* Additional styles to hide theme elements - modified to be more specific */
+.site-header:not(.studio-data),
+.site-footer:not(.studio-data),
+.wp-block-template-part:not(.studio-data),
+.wp-site-blocks > header:not(.studio-data),
+.wp-site-blocks > footer:not(.studio-data) {
+  display: none !important;
+}
+
+/* Allow your studio data to show */
+.studio-data,
+.studio-data * {
+  display: block !important;
+}
+
+/* More targeted hiding of specific elements */
+#wp--skip-link--target > div.wp-block-group:contains("Terminal Database"),
+.wp-block-group.is-layout-constrained:contains("Terminal Database") {
+  display: none !important;
+}
+
+/* Keep your site title visible if needed */
+.wp-block-site-title.studio-data,
+h1.studio-data,
+.studio-data h1 {
+  color: #0f0 !important;
+  display: block !important;
+}
+
+.terminal-body .terminal-container {
+  max-width: 98%;
+  margin: 1rem auto;
+}
+
+/* Style body directly for terminal theme */
+html,
+body {
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Make sure content fills the screen */
+.wp-site-blocks,
+.wp-block-group,
+#page {
+  background-color: #000000 !important;
+}
+
+/* Give the terminal a bit of padding */
+.terminal-body .terminal-container {
+  padding: 2rem;
+}
+
+/* Hide any remaining Gutenberg blocks */
+.wp-block-template-part,
+.wp-block-navigation,
+.wp-block-site-title,
+.wp-block-site-tagline {
+  display: none !important;
+}
+
+/* Fixed image modal styling */
+.image-modal {
+  position: absolute; /* Changed from fixed for better page scrolling */
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 8px;
+  border: 1px solid #0f0;
+  display: none;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); /* Green glow */
+  pointer-events: none; /* Prevents the modal from interfering with mouse events */
+}
+
+.image-modal.visible {
+  display: block;
+}
+
+.image-modal img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Highlight rows with images */
+.terminal-table tr.has-image td {
+  position: relative;
+}
+
+.terminal-table tr.has-image td:first-child::before {
+  content: "◉ ";
+  color: #0f0;
+}
+
+/* Make the image indicator pulse slightly */
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.terminal-table tr.has-image td:first-child::before {
+  animation: pulse 2s infinite;
+}
+
+/* ASCII Title Styling */
+.ascii-title {
+  font-family: monospace;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: #0f0;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  text-align: center;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .ascii-title {
+    font-size: 0.4rem;
+  }
+}
+
+/* Landing Page Styles */
+.landing-page .landing-container {
+  max-width: 700px;
+  margin: 10vh auto;
+  padding: 2rem;
+  border: none;
+  background-color: #000000;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.landing-content {
+  margin-top: 2rem;
+}
+
+.landing-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.terminal-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.terminal-links li {
+  margin-bottom: 1rem;
+}
+
+.terminal-links li:before {
+  content: "> ";
+  color: #0f0;
+}
+
+.terminal-link {
+  color: #0f0;
+  text-decoration: none;
+  transition: color 0.2s;
+  border-bottom: 1px solid #0f0;
+}
+
+.terminal-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hover image */
+.hover-image {
+  position: absolute;
+  z-index: 1000;
+  padding: 5px;
+  background: #000;
+  border: 1px solid #0f0;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  pointer-events: none;
+  max-width: 250px;
+}
+
+.hover-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Pixel Animation Styles */
+#pixel-name {
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.pixel-char {
+  display: inline-block;
+  position: relative;
+  color: #0f0;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  transition: color 0.2s;
+  margin-right: 0.05em; /* Add a small space between characters */
+}
+
+.pixel-char.revealed {
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.8;
+    text-shadow: none;
+  }
+}
+
+/* Randomly vary the flicker timing for each character */
+.pixel-char:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+.pixel-char:nth-child(3n) {
+  animation-delay: 0.15s;
+}
+.pixel-char:nth-child(5n) {
+  animation-delay: 0.3s;
+}
+.pixel-char:nth-child(7n) {
+  animation-delay: 0.4s;
+}
