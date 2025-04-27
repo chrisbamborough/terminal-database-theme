@@ -7,6 +7,12 @@ function terminal_database_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'terminal_database_enqueue_styles');
 
+// Enqueue Adobe Typekit fonts
+function terminal_enqueue_typekit() {
+    wp_enqueue_style('typekit', 'https://use.typekit.net/smy2pep.css', array(), null);
+}
+add_action('wp_enqueue_scripts', 'terminal_enqueue_typekit');
+
 // Register Custom Post Type for Database Entries
 function create_database_post_type() {
     register_post_type('database_entry',
@@ -96,12 +102,13 @@ function terminal_database_shortcode() {
         <table class="terminal-table">
             <thead>
                 <tr>
-                    <th class="terminal-sort" data-column="1">NAME</th>
-                    <th class="terminal-sort" data-column="1">MEDIA</th>
-                    <th class="terminal-sort" data-column="3">INTEREST</th>
-                    <th class="terminal-sort" data-column="2">DATE</th>
+                    <th class="terminal-sort gridlite-heading" data-column="1">NAME</th>
+                    <th class="terminal-sort gridlite-heading" data-column="1">MEDIA</th>
+                    <th class="terminal-sort gridlite-heading" data-column="3">INTEREST</th>
+                    <th class="terminal-sort gridlite-heading" data-column="2">DATE</th>
                 </tr>
             </thead>
+            
             <tbody>
                 <?php
                 $args = array(

@@ -2,8 +2,8 @@
 body {
   background-color: #000000;
   color: #0f0; /* Classic green terminal color */
-  font-family: "JetBrains Mono", "Cascadia Code", "Fira Code", "Courier New",
-    monospace;
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
   line-height: 1.5;
 }
 
@@ -47,6 +47,9 @@ body {
   color: #0f0;
   font-family: inherit;
   padding: 0.5rem 0;
+  font-weight: bold; /* Make text bold */
+  text-shadow: 0 0 3px rgba(0, 255, 0, 0.5); /* Add subtle glow */
+  font-size: 16px; /* Add explicit font size to match filter dropdowns */
 }
 
 /* Remove any borders or background from the search */
@@ -58,44 +61,108 @@ body {
 /* Placeholder color */
 .terminal-search::placeholder {
   color: #0f0;
-  opacity: 0.5;
+  opacity: 0.8; /* Increased from 0.5 for better visibility */
+  font-weight: bold;
+  font-size: 16px; /* Match the input text size */
 }
 
+/* Enhance visibility of filter dropdowns */
+.terminal-filter,
+#category-filter,
+#tag-filter {
+  background-color: #000;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 0.5rem;
+  font-family: inherit;
+  border-radius: 0;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+/* Style dropdown options */
+.terminal-filter option,
+#category-filter option,
+#tag-filter option {
+  background-color: #000;
+  color: #0f0;
+  font-weight: bold;
+}
+
+/* Add a subtle highlight for active filters */
+.terminal-filter:focus,
+#category-filter:focus,
+#tag-filter:focus {
+  border-color: #0f0;
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+  outline: none;
+}
+
+/* Update table styling to match requirements */
 .terminal-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  font-size: 16px;
+  background-color: #000;
+  text-transform: uppercase;
+  border: none;
 }
 
 .terminal-table th {
   text-align: left;
-  padding: 0.5rem;
-  border-bottom: 1px solid #0f0;
+  padding: 10px;
   color: #0f0;
-  cursor: pointer;
   font-weight: normal;
+  background-color: #000;
+  border: none;
+  display: table-cell;
 }
 
-.terminal-table th:hover {
-  color: #fff; /* White highlight on hover */
-}
-
-.terminal-table th.asc::after {
-  content: " ↑";
-}
-
-.terminal-table th.desc::after {
-  content: " ↓";
+.terminal-table thead {
+  background-color: #000;
 }
 
 .terminal-table td {
-  padding: 0.5rem;
-  border-bottom: 1px dotted #0f0; /* Dotted bottom border */
+  padding: 10px;
+  color: #0f0;
+  border-bottom: 1px solid #0f0;
+  border-right: none; /* Remove vertical lines */
 }
 
-.terminal-table tr:hover {
-  background-color: #001100; /* Subtle highlight on hover */
+.terminal-table td:last-child {
+  border-right: none;
+}
+
+.terminal-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row hover effect */
+.terminal-table tbody tr:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.terminal-table tbody tr:hover td,
+.terminal-table tbody tr:hover a {
+  color: #000;
+}
+
+/* Adjust link styles inside the table */
+.terminal-table a {
+  color: #0f0; /* Changed from white to green */
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+}
+
+.terminal-table a:hover {
+  color: #000;
+  text-decoration: none;
 }
 
 .terminal-prompt {
@@ -474,4 +541,137 @@ body {
     max-width: 100%; /* Prevent links from exceeding the container width */
     box-sizing: border-box; /* Include padding and border in width calculation */
   }
+}
+
+/* Adobe Typekit Font - Gridlite */
+.gridlite-heading {
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+}
+
+/* For a more terminal-appropriate styling that still uses the font */
+.terminal-title {
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+  color: #0f0;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+/* Use this with your existing terminal-header h1 styles */
+.terminal-header h1 {
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0f0;
+}
+
+/* Or create a special class for database titles */
+.database-title {
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: #0f0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Column-specific text size adjustments */
+.terminal-table td:nth-child(1) {
+  /* Name column - make text bigger */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Date column - assuming it's the second column, adjust if needed */
+.terminal-table td:nth-child(4) {
+  /* Date column - make text smaller */
+  font-size: 14px;
+}
+
+.entry-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-text {
+  line-height: 1.6;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  color: #0f0;
+  font-weight: 300; /* Use a lighter weight */
+  opacity: 0.85; /* Slightly reduce the intensity */
+  font-size: 15px; /* Slightly smaller font size */
+  letter-spacing: 0.02em; /* Subtle letter spacing for readability */
+}
+
+.entry-text p {
+  margin-bottom: 1.5rem;
+  font-weight: 300; /* Use light weight instead of ultra-light */
+}
+
+/* Make links in entry text stand out slightly */
+.entry-text a {
+  color: #0f0;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+/* Maintain bold only for headings */
+.entry-text h1,
+.entry-text h2,
+.entry-text h3,
+.entry-text h4,
+.entry-text h5,
+.entry-text h6 {
+  color: #0f0;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+  font-weight: bold; /* Keep headings bold */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .entry-content {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-meta {
+    order: 2;
+    margin-top: 1.5rem;
+  }
+
+  .entry-main {
+    order: 1;
+  }
+}
+
+/* Style image captions to match paragraph text */
+.wp-caption-text,
+figcaption {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  color: #0f0;
+  font-weight: 300;
+  opacity: 0.85;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* Handle WordPress default caption styling */
+.wp-block-image figcaption {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  color: #0f0;
+  font-weight: 300;
+  opacity: 0.85;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin-top: 0.5rem;
 }
