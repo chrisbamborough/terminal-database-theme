@@ -21,6 +21,7 @@
         <div class="terminal-back-link">
             <a href="<?php echo esc_url(home_url()); ?>">← Back Home</a>
         </div>
+        <br>
         <pre class="ascii-title">
   ____  _             _ _          ____        _        
  / ___|| |_ _   _  __| (_) ___    |  _ \  __ _| |_ __ _ 

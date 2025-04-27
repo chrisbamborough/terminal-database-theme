@@ -305,11 +305,6 @@ body {
   position: relative;
 }
 
-.terminal-table tr.has-image td:first-child::before {
-  content: "◉ ";
-  color: #0f0;
-}
-
 /* Make the image indicator pulse slightly */
 @keyframes pulse {
   0% {
@@ -674,4 +669,61 @@ figcaption {
   letter-spacing: 0.02em;
   text-align: left;
   margin-top: 0.5rem;
+}
+
+/* Responsive table styling for mobile */
+@media (max-width: 768px) {
+  /* Convert table to a more mobile-friendly layout */
+  .terminal-table {
+    font-size: 14px;
+  }
+
+  /* Make the table headers more visible */
+  .terminal-table th {
+    font-weight: bold;
+    padding: 8px 5px;
+  }
+
+  /* Reduce cell padding to fit more content */
+  .terminal-table td {
+    padding: 8px 5px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  /* Stack-like display for extra small screens */
+  .terminal-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  /* Hide less important columns on smallest screens */
+  .terminal-table th:nth-child(3),
+  .terminal-table td:nth-child(3) {
+    display: none;
+  }
+
+  /* Adjust column widths for better fit */
+  .terminal-table th:nth-child(1),
+  .terminal-table td:nth-child(1) {
+    width: 50%;
+    font-size: 14px; /* Make name column text smaller on mobile */
+    font-weight: normal; /* Reduce weight for better readability at small size */
+  }
+
+  .terminal-table th:nth-child(2),
+  .terminal-table td:nth-child(2),
+  .terminal-table th:nth-child(4),
+  .terminal-table td:nth-child(4) {
+    width: 25%;
+    font-size: 12px;
+  }
+
+  /* Ensure text doesn't overflow */
+  .terminal-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

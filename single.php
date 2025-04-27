@@ -31,7 +31,7 @@
                 $categories = get_the_category();
                 if ($categories) : ?>
                     <div class="entry-categories">
-                        <span class="meta-label">CATEGORY:</span>
+                        <span class="meta-label">MEDIA:</span>
                         <?php foreach($categories as $category) : ?>
                             <span class="meta-value"><?php echo esc_html($category->name); ?></span>
                         <?php endforeach; ?>
@@ -43,7 +43,7 @@
                 $tags = get_the_tags();
                 if ($tags) : ?>
                     <div class="entry-tags">
-                        <span class="meta-label">TAGS:</span>
+                        <span class="meta-label">INTEREST:</span>
                         <?php foreach($tags as $tag) : ?>
                             <span class="meta-value"><?php echo esc_html($tag->name); ?></span>
                         <?php endforeach; ?>
