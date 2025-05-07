@@ -19,23 +19,21 @@
 
 <div class="landing-container">
     <div class="terminal-header">
-        <h1 id="pixel-name" class="pixel-animation">Chris Bamborough</h1>
+        <h1 id="pixel-name" class="pixel-animation">
+            <span id="first-name">Christopher</span>
+            <span id="last-name">Bamborough</span>
+        </h1>
     </div>
-    
-    <!-- Text Content Section -->
-    <div class="landing-text">
-        <p class="landing-intro"><?php echo get_the_content(); ?></p>
-    </div>
-    
-    <!-- Links Section -->
-    <div class="landing-links">
+
+        <!-- Links Section -->
+        <div class="landing-links">
         <nav class="terminal-links">
             <ul>
                 <li><a href="<?php echo esc_url(home_url('/studio')); ?>" class="terminal-link">Studio DATA</a></li>
                 <li><a href="https://thearchitectsmeasure.substack.com/" class="terminal-link" target="_blank">The Architects Measure</a></li>
                 <li><a href="https://archmanu.com/" class="terminal-link" target="_blank">Arch_Manu</a></li>
                 <li><a href="https://www.linkedin.com/in/chrisbamborough/" class="terminal-link" target="_blank">LinkedIn</a></li>
-                <li><a href="https://bsky.app/profile/smthspce.bsky.social" class="terminal-link" target="_blank">Bluesky</a></li>
+                <li><a href="https://soundcloud.com/smthspce/sets/anoss-radio-shows" class="terminal-link" target="_blank">ANOSS Radio</a></li>
 
 
                 <?php
@@ -60,6 +58,13 @@
             </ul>
         </nav>
     </div>
+    
+    <!-- Text Content Section -->
+    <div class="landing-text">
+        <p class="landing-intro"><?php echo get_the_content(); ?></p>
+    </div>
+    
+
 </div>
 
 <?php wp_footer(); ?>

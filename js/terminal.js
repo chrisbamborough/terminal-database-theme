@@ -133,34 +133,35 @@ jQuery(document).ready(function ($) {
   }
 
   // Name animation for landing page
-  if (document.getElementById("pixel-name")) {
-    const name = "Christopher Bamborough";
-    const nameElement = document.getElementById("pixel-name");
+  if (
+    document.getElementById("first-name") &&
+    document.getElementById("last-name")
+  ) {
+    animateName("first-name", "Christopher");
+    animateName("last-name", "Bamborough");
+  }
+
+  function animateName(elementId, name) {
+    const nameElement = document.getElementById(elementId);
 
     // Clear the content first
     nameElement.textContent = "";
 
-    // Create a span for each character with appropriate spacing
+    // Create a span for each character
     name.split("").forEach((char) => {
       const span = document.createElement("span");
       span.className = "pixel-char";
-      span.innerHTML = char === " " ? "&nbsp;" : "_";
+      span.textContent = "_"; // Placeholder character
       nameElement.appendChild(span);
     });
 
     // Animation logic
-    const spans = document.querySelectorAll(".pixel-char");
+    const spans = nameElement.querySelectorAll(".pixel-char");
     const chars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,./<>?";
 
     spans.forEach((span, index) => {
       const originalChar = name[index];
-
-      // Skip spaces but maintain them as non-breaking spaces
-      if (originalChar === " ") {
-        span.innerHTML = "&nbsp;";
-        return;
-      }
 
       let iterations = 0;
       const maxIterations = 10 + Math.floor(Math.random() * 10);
