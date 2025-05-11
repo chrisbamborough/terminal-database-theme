@@ -30,10 +30,9 @@
         <nav class="terminal-links">
             <ul>
                 <li><a href="<?php echo esc_url(home_url('/studio')); ?>" class="terminal-link">Studio DATA</a></li>
-                <li><a href="https://thearchitectsmeasure.substack.com/" class="terminal-link" target="_blank">The Architects Measure</a></li>
                 <li><a href="https://archmanu.com/" class="terminal-link" target="_blank">Arch_Manu</a></li>
                 <li><a href="https://www.linkedin.com/in/chrisbamborough/" class="terminal-link" target="_blank">LinkedIn</a></li>
-                <li><a href="https://soundcloud.com/smthspce/sets/anoss-radio-shows" class="terminal-link" target="_blank">ANOSS Radio</a></li>
+                <li><a href="https://www.youtube.com/@Smthspce/podcasts" class="terminal-link" target="_blank">smthspce::motion</a></li>
 
 
                 <?php

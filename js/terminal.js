@@ -35,6 +35,48 @@ jQuery(document).ready(function ($) {
     }
   });
 
+  // Tag filter functionality
+  $("#tag-filter").on("change", function () {
+    const selectedTag = $(this).val();
+
+    if (selectedTag === "") {
+      // Show all rows if "All Tags" is selected
+      $(".terminal-table tbody tr").show();
+    } else {
+      // Filter rows based on tag
+      $(".terminal-table tbody tr").each(function () {
+        const rowTags = $(this).data("tags");
+
+        if (rowTags && rowTags.includes(selectedTag)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  });
+
+  // Also make sure category filter is working
+  $("#category-filter").on("change", function () {
+    const selectedCategory = $(this).val();
+
+    if (selectedCategory === "") {
+      // Show all rows if "All Categories" is selected
+      $(".terminal-table tbody tr").show();
+    } else {
+      // Filter rows based on category
+      $(".terminal-table tbody tr").each(function () {
+        const rowCategory = $(this).data("category");
+
+        if (rowCategory === selectedCategory) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  });
+
   // Simplified image hover functionality - always position next to mouse
   $(".terminal-table tr.has-image").on({
     mouseenter: function (e) {

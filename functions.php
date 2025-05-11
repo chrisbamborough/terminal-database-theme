@@ -130,16 +130,16 @@ function terminal_database_shortcode() {
                         // Get tags
                         $post_tags = get_the_tags();
                         $tags_html = '';
-                        $tags_slugs = '';
+                        $tags_data = '';
+                        $tag_slugs = array();
                         if ($post_tags) {
                             $tags = array();
-                            $tag_slugs = array();
                             foreach ($post_tags as $tag) {
                                 $tags[] = $tag->name;
                                 $tag_slugs[] = $tag->slug;
                             }
                             $tags_html = implode(', ', $tags);
-                            $tags_slugs = implode(' ', $tag_slugs);
+                            $tags_data = implode(' ', $tag_slugs);
                         } else {
                             $tags_html = '—';
                         }
@@ -154,7 +154,9 @@ function terminal_database_shortcode() {
                         
                         $row_class = $has_image ? 'has-image' : '';
                         ?>
-                        <tr data-category="<?php echo esc_attr($category_slug); ?>" data-tags="<?php echo esc_attr($tags_slugs); ?>" class="<?php echo $row_class; ?>" 
+                        <tr data-category="<?php echo esc_attr($category_slug); ?>" 
+                            data-tags="<?php echo esc_attr($tags_data); ?>" 
+                            class="<?php echo $row_class; ?>" 
                             <?php if ($has_image) : ?>
                             data-image="<?php echo esc_attr($image_url); ?>"
                             <?php endif; ?>>
