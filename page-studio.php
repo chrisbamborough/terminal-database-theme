@@ -18,9 +18,21 @@
 
 <div class="terminal-container">
     <div class="studio-header-bar">
-        <div class="ascii-title">
+        <div class="ascii-title" tabindex="0" style="cursor:pointer;">
         <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
         </div>
+    </div>
+    <div class="studio-category-menu">
+    <?php
+    $categories = get_categories([
+        'orderby' => 'name',
+        'order'   => 'ASC',
+        'hide_empty' => false,
+    ]);
+    foreach ($categories as $cat) {
+        echo '<a href="#" class="studio-category-link" data-cat-id="' . esc_attr($cat->slug) . '">' . esc_html($cat->name) . '</a>';
+    }
+    ?>
     </div>
     <?php echo do_shortcode('[terminal_database]'); ?>
 </div>

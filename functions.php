@@ -77,7 +77,7 @@ function terminal_database_shortcode() {
             <input type="text" class="terminal-search" placeholder="Search...">
             
             <!-- Category Filter -->
-            <select id="category-filter" class="terminal-filter">
+            <!-- <select id="category-filter" class="terminal-filter">
                 <option value="">All Categories</option>
                 <?php
                 $categories = get_categories();
@@ -85,7 +85,7 @@ function terminal_database_shortcode() {
                     echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
                 }
                 ?>
-            </select>
+            </select> -->
 
             <!-- Tag Filter -->
             <select id="tag-filter" class="terminal-filter">
@@ -102,10 +102,10 @@ function terminal_database_shortcode() {
         <table class="terminal-table">
             <thead>
                 <tr>
-                    <th class="terminal-sort gridlite-heading" data-column="1">NAME</th>
-                    <th class="terminal-sort gridlite-heading" data-column="1">MEDIA</th>
-                    <th class="terminal-sort gridlite-heading" data-column="3">INTEREST</th>
-                    <th class="terminal-sort gridlite-heading" data-column="2">DATE</th>
+                    <th class="terminal-sort gridlite-heading" data-column="1">NAME <span class="sort-indicator">▲▼</span></th>
+                    <th class="terminal-sort gridlite-heading" data-column="1">MEDIA <span class="sort-indicator">▲▼</span></th>
+                    <th class="terminal-sort gridlite-heading" data-column="3">INTEREST <span class="sort-indicator">▲▼</span></th>
+                    <th class="terminal-sort gridlite-heading" data-column="2">DATE <span class="sort-indicator">▲▼</span></th>
                 </tr>
             </thead>
             

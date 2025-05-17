@@ -47,7 +47,7 @@ body {
 }
 
 .terminal-search::placeholder {
-  color: #888;
+  color: #111;
   opacity: 0.8;
   font-weight: bold;
   font-size: 16px;
@@ -104,6 +104,19 @@ body {
   background-color: #000;
   border: none;
   display: table-cell;
+}
+
+.terminal-table th .sort-indicator {
+  font-size: 0.9em;
+  color: #bbb;
+  margin-left: 0.3em;
+  font-family: inherit;
+}
+
+.terminal-table th.sorted-asc .sort-indicator,
+.terminal-table th.sorted-desc .sort-indicator {
+  color: #111;
+  font-weight: bold;
 }
 
 .terminal-table thead {
@@ -268,7 +281,7 @@ body {
 }
 
 .studio-database-page .terminal-search::placeholder {
-  color: #888 !important;
+  color: #111 !important;
   opacity: 1;
   font-weight: normal;
 }
@@ -313,3 +326,34 @@ body {
     min-width: 0;
   }
 }
+
+.studio-category-menu {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.studio-category-link {
+  color: #111;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.2em 0.6em;
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s;
+}
+.studio-category-link:hover,
+.studio-category-link.active {
+  background: #111;
+  color: #fff;
+}
+
+/* Sorting indicators for terminal table */
+/* .terminal-table th.sorted-asc::after {
+  content: " ▲";
+}
+.terminal-table th.sorted-desc::after {
+  content: " ▼";
+} */

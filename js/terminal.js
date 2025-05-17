@@ -1,4 +1,54 @@
 jQuery(document).ready(function ($) {
+  // CATEGORY MENU LINK FILTERING
+  $(".studio-category-link").on("click", function (e) {
+    e.preventDefault();
+    $(".studio-category-link").removeClass("active");
+    $(this).addClass("active");
+
+    // Clear tag dropdown
+    $("#tag-filter").val("");
+
+    const catSlug = $(this).data("cat-id");
+    $(".terminal-table tbody tr").each(function () {
+      const rowCat = $(this).data("category");
+      if (!catSlug || rowCat === catSlug) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+
+  // TAG DROPDOWN FILTERING
+  $("#tag-filter").on("change", function () {
+    $(".studio-category-link").removeClass("active");
+    const selectedTag = $(this).val();
+    $(".terminal-table tbody tr").each(function () {
+      const rowTags = ($(this).data("tags") || "").split(" ");
+      if (!selectedTag || rowTags.includes(selectedTag)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+
+  // SEARCH FILTER (optional, keep if you want)
+  $(".terminal-search").on("input", function () {
+    const searchTerm = $(this).val().toLowerCase();
+    $(".terminal-table tbody tr").each(function () {
+      const rowText = $(this).text().toLowerCase();
+      if (rowText.includes(searchTerm)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+    // Reset filters
+    $(".studio-category-link").removeClass("active");
+    $("#tag-filter").val("");
+  });
+
   // Sort functionality
   $(".terminal-sort").click(function () {
     const column = $(this).data("column");
@@ -223,4 +273,50 @@ jQuery(document).ready(function ($) {
       }, index * 100);
     });
   }
+
+  $(".terminal-table th").on("click", function () {
+    var table = $(this).closest("table.terminal-table");
+    var tbody = table.find("tbody");
+    var rows = tbody.find("tr").toArray();
+    var colIndex = $(this).index();
+    var isAsc = $(this).hasClass("sorted-asc");
+
+    // Remove sort classes from all headers and reset indicators
+    table.find("th").removeClass("sorted-asc sorted-desc");
+    table.find(".sort-indicator").text("▲▼");
+
+    // Sort rows
+    rows.sort(function (a, b) {
+      var aText = $(a).find("td").eq(colIndex).text().toLowerCase();
+      var bText = $(b).find("td").eq(colIndex).text().toLowerCase();
+      if (aText < bText) return isAsc ? 1 : -1;
+      if (aText > bText) return isAsc ? -1 : 1;
+      return 0;
+    });
+
+    // Toggle sort direction class and indicator
+    if (isAsc) {
+      $(this).addClass("sorted-desc");
+      $(this).find(".sort-indicator").text("▼");
+    } else {
+      $(this).addClass("sorted-asc");
+      $(this).find(".sort-indicator").text("▲");
+    }
+
+    // Append sorted rows
+    $.each(rows, function (i, row) {
+      tbody.append(row);
+    });
+  });
+
+  $(".ascii-title").on("click", function () {
+    // Remove active state from all category links
+    $(".studio-category-link").removeClass("active");
+    // Reset tag dropdown
+    $("#tag-filter").val("");
+    // Clear search box
+    $(".terminal-search").val("");
+    // Show all table rows
+    $(".terminal-table tbody tr").show();
+  });
 });
