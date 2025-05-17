@@ -13,25 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class('terminal-body'); ?>>
+<body <?php body_class('studio-database-page'); ?>>
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
-    <div class="terminal-header">
-        <div class="terminal-back-link">
-            <a href="<?php echo esc_url(home_url()); ?>">← Back Home</a>
+    <div class="studio-header-bar">
+        <div class="ascii-title">
+        <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
         </div>
-        <br>
-        <pre class="ascii-title">
-  ____  _             _ _          ____        _        
- / ___|| |_ _   _  __| (_) ___    |  _ \  __ _| |_ __ _ 
- \___ \| __| | | |/ _` | |/ _ \   | | | |/ _` | __/ _` |
-  ___) | |_| |_| | (_| | | (_) |  | |_| | (_| | || (_| |
- |____/ \__|\__,_|\__,_|_|\___/   |____/ \__,_|\__\__,_|
-                                                        
-        </pre>
     </div>
-    
     <?php echo do_shortcode('[terminal_database]'); ?>
 </div>
 

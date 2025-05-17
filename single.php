@@ -17,7 +17,7 @@
 <div class="terminal-container">
     <div class="terminal-header">
         <div class="terminal-navigation">
-            <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="terminal-back">< BACK TO DATABASE</a>
+            <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="terminal-back">< BACK TO STUDIO</a>
         </div>
         <!-- <h1 class="database-title"><?php the_title(); ?></h1> -->
     </div>
