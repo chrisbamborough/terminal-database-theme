@@ -521,10 +521,10 @@ body {
 .entry-text {
   line-height: 1.6;
   font-family: "JetBrains Mono", "Courier New", monospace;
-  color: #0f0;
-  font-weight: 300; /* Use a lighter weight */
-  opacity: 0.85; /* Slightly reduce the intensity */
-  font-size: 15px; /* Slightly smaller font size */
+  color: #111; /* Changed from #0f0 to #111 */
+  font-weight: 300;
+  opacity: 0.85;
+  font-size: 15px;
   letter-spacing: 0.02em; /* Subtle letter spacing for readability */
 }
 
@@ -535,7 +535,7 @@ body {
 
 /* Make links in entry text stand out slightly */
 .entry-text a {
-  color: #0f0;
+  color: #111; /* Changed from #0f0 to #111 */
   text-decoration: underline;
   font-weight: normal;
 }
@@ -547,7 +547,7 @@ body {
 .entry-text h4,
 .entry-text h5,
 .entry-text h6 {
-  color: #0f0;
+  color: #111; /* Changed from #0f0 to #111 */
   margin-top: 1.5rem;
   margin-bottom: 1rem;
   font-family: "gridlite-pe-variable", sans-serif;
@@ -575,7 +575,7 @@ body {
 .wp-caption-text,
 figcaption {
   font-family: "JetBrains Mono", "Courier New", monospace;
-  color: #0f0;
+  color: #111; /* Changed from #0f0 to #111 */
   font-weight: 300;
   opacity: 0.85;
   font-size: 15px;
@@ -588,7 +588,7 @@ figcaption {
 /* Handle WordPress default caption styling */
 .wp-block-image figcaption {
   font-family: "JetBrains Mono", "Courier New", monospace;
-  color: #0f0;
+  color: #111; /* Changed from #0f0 to #111 */
   font-weight: 300;
   opacity: 0.85;
   font-size: 15px;

@@ -17,11 +17,14 @@
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
-    <div class="studio-header-bar">
-        <div class="ascii-title" tabindex="0" style="cursor:pointer;">
-        <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
+    <div class="terminal-header">
+         <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
         </div>
+<div class="studio-header-bar">
+    <div class="ascii-title" tabindex="0" style="cursor:pointer;">
+        <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
     </div>
+</div>  
     <div class="studio-category-menu">
     <?php
     $categories = get_categories([
