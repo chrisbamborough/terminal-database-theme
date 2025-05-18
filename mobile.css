@@ -1,0 +1,244 @@
+/* --------------------- Mobile (up to 767px) --------------------------- */
+@media (max-width: 767px) {
+  /* General mobile adjustments */
+  .ascii-title {
+    font-size: 0.4rem;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .landing-page .terminal-header h1,
+  #pixel-name {
+    font-size: 2.5rem;
+  }
+
+  .entry-content {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-meta {
+    order: 2;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .entry-main {
+    order: 1;
+    padding: 0;
+  }
+
+  .entry-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .entry-text p {
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .entry-text h1,
+  .entry-text h2 {
+    font-size: 1.3rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .entry-text h3,
+  .entry-text h4,
+  .entry-text h5,
+  .entry-text h6 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-text img,
+  .entry-text figure,
+  .entry-text .wp-block-image {
+    max-width: 100%;
+    height: auto;
+    margin: 1.2rem 0;
+  }
+
+  .wp-caption-text,
+  figcaption,
+  .wp-block-image figcaption {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  .single-post .terminal-container,
+  .studio-database-page .terminal-container {
+    padding: 0 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Studio page mobile improvements */
+  .studio-database-page .studio-header-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+  }
+
+  .studio-database-page .ascii-title {
+    font-size: 1rem;
+    line-height: 1.2;
+    overflow-x: auto;
+    text-align: left;
+    padding: 0.2rem 0;
+  }
+
+  .studio-category-menu {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .studio-category-link {
+    font-size: 1rem;
+    padding: 0em 0.7em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .studio-database-page .terminal-table {
+    font-size: 14px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .studio-database-page .terminal-table th,
+  .studio-database-page .terminal-table td {
+    padding: 8px 4px;
+    word-break: break-word;
+  }
+
+  .studio-database-page .terminal-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+  }
+  .studio-database-page .terminal-search {
+    order: 1;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .studio-database-page .terminal-filter {
+    order: 2;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Table adjustments for very small screens */
+  @media (max-width: 480px) {
+    .terminal-table {
+      table-layout: fixed;
+      width: 100%;
+    }
+    .terminal-table th:nth-child(3),
+    .terminal-table td:nth-child(3) {
+      display: none;
+    }
+    .terminal-table th:nth-child(1),
+    .terminal-table td:nth-child(1) {
+      width: 50%;
+      font-size: 14px;
+      font-weight: normal;
+    }
+    .terminal-table th:nth-child(2),
+    .terminal-table td:nth-child(2),
+    .terminal-table th:nth-child(4),
+    .terminal-table td:nth-child(4) {
+      width: 25%;
+      font-size: 12px;
+    }
+    .terminal-table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* Only show the first column (Name) on mobile, hide others */
+  .studio-database-page .terminal-table {
+    width: 100%;
+    table-layout: fixed;
+    display: block;
+    overflow-x: auto;
+  }
+  .studio-database-page .terminal-table th:not(:first-child),
+  .studio-database-page .terminal-table td:not(:first-child) {
+    display: none;
+  }
+  .studio-database-page .terminal-table th:first-child,
+  .studio-database-page .terminal-table td:first-child {
+    width: 100%;
+    font-size: 1rem;
+    text-align: left;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+
+/* --------------------- Tablet (768px to 1366px) --------------------------- */
+@media (min-width: 768px) and (max-width: 1366px) {
+  .studio-database-page .terminal-container {
+    padding: 0 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .studio-database-page .studio-header-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  .studio-database-page .ascii-title {
+    font-size: 1.7rem;
+    line-height: 1.2;
+    max-width: 60%;
+    padding: 0.5rem 0;
+  }
+
+  .studio-category-menu {
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .studio-category-link {
+    font-size: 1.1rem;
+    padding: 0.4em 1em;
+    width: auto;
+  }
+
+  .studio-database-page .terminal-controls {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  .studio-database-page .terminal-search,
+  .studio-database-page .terminal-filter {
+    width: 50%;
+    min-width: 180px;
+    box-sizing: border-box;
+  }
+
+  .studio-database-page .terminal-table {
+    font-size: 16px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+}

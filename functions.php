@@ -3,6 +3,7 @@
 function terminal_database_enqueue_styles() {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('terminal-style', get_stylesheet_directory_uri() . '/terminal.css');
+    wp_enqueue_style('terminal-mobile', get_stylesheet_directory_uri() . '/mobile.css', array('terminal-style'), null, 'all and (max-width: 900px)');
     wp_enqueue_script('terminal-script', get_stylesheet_directory_uri() . '/js/terminal.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'terminal_database_enqueue_styles');
@@ -71,7 +72,7 @@ add_action('init', 'create_database_taxonomies');
 function terminal_database_shortcode() {
     ob_start();
     ?>
-    <div class="terminal-container">
+    <div class="database-container">
         <!-- Add search bar, category filter, and tag filter -->
         <div class="terminal-controls">
             <input type="text" class="terminal-search" placeholder="Search...">

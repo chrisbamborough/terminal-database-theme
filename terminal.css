@@ -8,11 +8,9 @@ body {
 }
 
 .terminal-container {
-  max-width: 90%;
   margin: 2rem auto;
-  padding: 1rem;
-  border: none;
-  background-color: #000;
+  padding: 0 1rem;
+  background-color: #ffffff;
   color: #111;
 }
 
@@ -189,12 +187,10 @@ body {
   font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
 }
 
-.studio-database-page .terminal-container {
+.studio-database-page {
   background: #fff !important;
   color: #111 !important;
-  max-width: 1100px;
   margin: 0 auto;
-  padding: 0;
   border: none;
   box-shadow: none;
 }
@@ -296,7 +292,7 @@ body {
   font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
 }
 
-.single-post .terminal-container {
+.single-post {
   background: #fff !important;
   color: #111 !important;
   max-width: 1100px;
@@ -306,26 +302,13 @@ body {
   box-shadow: none;
 }
 
-.single-post .terminal-container img,
-.single-post .terminal-container figure,
-.single-post .terminal-container .wp-block-image {
+.single-post img,
+.single-post figure,
+.single-post .wp-block-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-}
-
-/* Responsive adjustments */
-@media (max-width: 700px) {
-  .studio-database-page .studio-header-bar {
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .studio-database-page .ascii-title {
-    max-width: 100%;
-    min-width: 0;
-  }
 }
 
 .studio-category-menu {
@@ -501,17 +484,6 @@ body {
   }
 }
 
-/* Media queries */
-@media (max-width: 768px) {
-  .landing-page .terminal-header h1 {
-    font-size: 2.5rem;
-  }
-
-  #pixel-name {
-    font-size: 2.5rem;
-  }
-}
-
 /* Entry/Single Post Styles */
 .entry-main {
   display: flex;
@@ -553,103 +525,4 @@ body {
   font-family: "gridlite-pe-variable", sans-serif;
   font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
   font-weight: bold; /* Keep headings bold */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .entry-content {
-    grid-template-columns: 1fr;
-  }
-
-  .entry-meta {
-    order: 2;
-    margin-top: 1.5rem;
-  }
-
-  .entry-main {
-    order: 1;
-  }
-}
-
-/* Style image captions to match paragraph text */
-.wp-caption-text,
-figcaption {
-  font-family: "JetBrains Mono", "Courier New", monospace;
-  color: #111; /* Changed from #0f0 to #111 */
-  font-weight: 300;
-  opacity: 0.85;
-  font-size: 15px;
-  letter-spacing: 0.02em;
-  line-height: 1.6;
-  margin-top: 0.5rem;
-  text-align: left;
-}
-
-/* Handle WordPress default caption styling */
-.wp-block-image figcaption {
-  font-family: "JetBrains Mono", "Courier New", monospace;
-  color: #111; /* Changed from #0f0 to #111 */
-  font-weight: 300;
-  opacity: 0.85;
-  font-size: 15px;
-  letter-spacing: 0.02em;
-  text-align: left;
-  margin-top: 0.5rem;
-}
-
-/* Responsive table styling for mobile */
-@media (max-width: 768px) {
-  /* Convert table to a more mobile-friendly layout */
-  .terminal-table {
-    font-size: 14px;
-  }
-
-  /* Make the table headers more visible */
-  .terminal-table th {
-    font-weight: bold;
-    padding: 8px 5px;
-  }
-
-  /* Reduce cell padding to fit more content */
-  .terminal-table td {
-    padding: 8px 5px;
-  }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-  /* Stack-like display for extra small screens */
-  .terminal-table {
-    table-layout: fixed;
-    width: 100%;
-  }
-
-  /* Hide less important columns on smallest screens */
-  .terminal-table th:nth-child(3),
-  .terminal-table td:nth-child(3) {
-    display: none;
-  }
-
-  /* Adjust column widths for better fit */
-  .terminal-table th:nth-child(1),
-  .terminal-table td:nth-child(1) {
-    width: 50%;
-    font-size: 14px; /* Make name column text smaller on mobile */
-    font-weight: normal; /* Reduce weight for better readability at small size */
-  }
-
-  .terminal-table th:nth-child(2),
-  .terminal-table td:nth-child(2),
-  .terminal-table th:nth-child(4),
-  .terminal-table td:nth-child(4) {
-    width: 25%;
-    font-size: 12px;
-  }
-
-  /* Ensure text doesn't overflow */
-  .terminal-table td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
