@@ -172,12 +172,6 @@ body {
   overflow-x: auto;
 }
 
-@media (max-width: 768px) {
-  .ascii-title {
-    font-size: 0.4rem;
-  }
-}
-
 /* --- Studio Database Page (White, Minimal) --- */
 .studio-database-page,
 .studio-database-page body {
