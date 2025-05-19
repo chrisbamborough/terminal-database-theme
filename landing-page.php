@@ -30,6 +30,7 @@
         <nav class="terminal-links">
             <ul>
                 <li><a href="<?php echo esc_url(home_url('/studio')); ?>" class="terminal-link">Studio DATA</a></li>
+                <li><a href="<?php echo esc_url(home_url('/arena')); ?>" class="terminal-link">News</a></li>
                 <li><a href="https://archmanu.com/" class="terminal-link" target="_blank">Arch_Manu</a></li>
                 <li><a href="https://www.linkedin.com/in/chrisbamborough/" class="terminal-link" target="_blank">LinkedIn</a></li>
                 <li><a href="https://www.youtube.com/@Smthspce/podcasts" class="terminal-link" target="_blank">smthspce::motion</a></li>
