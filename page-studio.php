@@ -17,27 +17,20 @@
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
+    <!-- Navigation Header -->
     <div class="terminal-header">
-         <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
-        </div>
-<div class="studio-header-bar">
-    <div class="ascii-title" tabindex="0" style="cursor:pointer;">
-        <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
     </div>
-</div>  
-    <div class="studio-category-menu">
-    <?php
-    $categories = get_categories([
-        'orderby' => 'name',
-        'order'   => 'ASC',
-        'hide_empty' => false,
-    ]);
-    foreach ($categories as $cat) {
-        echo '<a href="#" class="studio-category-link" data-cat-id="' . esc_attr($cat->slug) . '">' . esc_html($cat->name) . '</a>';
-    }
-    ?>
+    
+    <!-- Logo and Menu Header -->
+    <div class="page-header">
+        <?php include get_stylesheet_directory() . '/studio-header.php'; ?>
     </div>
-    <?php echo do_shortcode('[terminal_database]'); ?>
+    
+    <!-- Page Content -->
+    <div class="page-content" id="studio-database-content">
+        <?php echo do_shortcode('[terminal_database]'); ?>
+    </div>
 </div>
 
 <?php wp_footer(); ?>

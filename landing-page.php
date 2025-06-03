@@ -64,6 +64,9 @@
         <p class="landing-intro"><?php echo get_the_content(); ?></p>
     </div>
     
+    <div id="landing-page-content">
+        <!-- landing page content -->
+    </div>
 
 </div>
 

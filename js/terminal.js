@@ -1,23 +1,24 @@
 jQuery(document).ready(function ($) {
+  // **COMMENT OUT OR REMOVE THIS ENTIRE SECTION**
   // CATEGORY MENU LINK FILTERING
-  $(".studio-category-link").on("click", function (e) {
-    e.preventDefault();
-    $(".studio-category-link").removeClass("active");
-    $(this).addClass("active");
+  // $(".studio-category-link").on("click", function (e) {
+  //   e.preventDefault();
+  //   $(".studio-category-link").removeClass("active");
+  //   $(this).addClass("active");
 
-    // Clear tag dropdown
-    $("#tag-filter").val("");
+  //   // Clear tag dropdown
+  //   $("#tag-filter").val("");
 
-    const catSlug = $(this).data("cat-id");
-    $(".terminal-table tbody tr").each(function () {
-      const rowCat = $(this).data("category");
-      if (!catSlug || rowCat === catSlug) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  });
+  //   const catSlug = $(this).data("cat-id");
+  //   $(".terminal-table tbody tr").each(function () {
+  //     const rowCat = $(this).data("category");
+  //     if (!catSlug || rowCat === catSlug) {
+  //       $(this).show();
+  //     } else {
+  //       $(this).hide();
+  //     }
+  //   });
+  // });
 
   // TAG DROPDOWN FILTERING
   $("#tag-filter").on("change", function () {

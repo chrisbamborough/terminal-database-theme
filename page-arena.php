@@ -17,24 +17,28 @@
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
+    <!-- Navigation Header -->
     <div class="terminal-header">
-         <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
     </div>
-    <div class="studio-header-bar">
-        <div class="ascii-title" tabindex="0" style="cursor:pointer;">
-            <?php include get_stylesheet_directory() . '/svg-logo-studio.php'; ?>
+    
+    <!-- Logo and Menu Header -->
+    <div class="page-header">
+        <?php include get_stylesheet_directory() . '/studio-header.php'; ?>
+    </div>
+    
+    <!-- Page Content -->
+    <div class="page-content" id="arena-grid-content">
+        <div class="arena-controls">
+            <input type="text" class="terminal-search" placeholder="Search...">
         </div>
-    </div>  
-    
-    <div class="arena-controls">
-        <input type="text" class="arena-search terminal-search" placeholder="Search...">
+        
+        <?php 
+        // Use the specific "Photo Album" channel by default
+        $channel = isset($_GET['channel']) ? sanitize_text_field($_GET['channel']) : 'photo-album-v7neum9xvi4';
+        echo do_shortcode('[arena_channel channel="' . esc_attr($channel) . '"]'); 
+        ?>
     </div>
-    
-    <?php 
-    // Use the specific "Photo Album" channel by default
-    $channel = isset($_GET['channel']) ? sanitize_text_field($_GET['channel']) : 'photo-album-v7neum9xvi4';
-    echo do_shortcode('[arena_channel channel="' . esc_attr($channel) . '"]'); 
-    ?>
 </div>
 
 <?php wp_footer(); ?>

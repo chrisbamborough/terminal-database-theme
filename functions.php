@@ -5,6 +5,15 @@ function terminal_database_enqueue_styles() {
     wp_enqueue_style('terminal-style', get_stylesheet_directory_uri() . '/terminal.css');
     wp_enqueue_style('terminal-mobile', get_stylesheet_directory_uri() . '/mobile.css', array('terminal-style'), null, 'all and (max-width: 900px)');
     wp_enqueue_script('terminal-script', get_stylesheet_directory_uri() . '/js/terminal.js', array('jquery'), '1.0', true);
+    
+    // Enqueue studio header JavaScript
+    wp_enqueue_script(
+        'studio-header-js',
+        get_stylesheet_directory_uri() . '/js/studio-header.js',
+        array('jquery'),
+        wp_get_theme()->get('Version'),
+        true
+    );
 }
 add_action('wp_enqueue_scripts', 'terminal_database_enqueue_styles');
 
