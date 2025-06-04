@@ -197,22 +197,80 @@ add_shortcode('terminal_database', 'terminal_database_shortcode');
 
 // Enqueue Are.na JavaScript
 function terminal_enqueue_arena_script() {
-    if (is_page('arena')) {
+    if (is_page('arena') || is_page('writing') || is_page('arenadata')) {
         wp_enqueue_script('arena-script', get_stylesheet_directory_uri() . '/js/arena.js', array('jquery'), '1.0', true);
     }
 }
 add_action('wp_enqueue_scripts', 'terminal_enqueue_arena_script');
 
-// Create Arena shortcode to display a specific channel
-function arena_channel_shortcode($atts) {
-    $atts = shortcode_atts(
-        array(
-            'channel' => 'typography',  // default channel
-        ),
-        $atts,
-        'arena_channel'
-    );
+// Create Arena Data page programmatically
+function create_arenadata_page() {
+    // Check if the page already exists
+    $arenadata_page = get_page_by_path('arenadata');
     
-    return '<div class="arena-grid" id="arena-content" data-channel="' . esc_attr($atts['channel']) . '"></div>';
+    if (!$arenadata_page) {
+        // Create the page
+        $page_data = array(
+            'post_title' => 'Arena Data',
+            'post_name' => 'arenadata',
+            'post_content' => '', // Empty content since template handles display
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_author' => 1, // Admin user ID
+        );
+        
+        $page_id = wp_insert_post($page_data);
+        
+        if ($page_id) {
+            // Flush rewrite rules to ensure the new page slug works
+            flush_rewrite_rules();
+        }
+    }
+}
+add_action('after_switch_theme', 'create_arenadata_page');
+
+// Create Writing page programmatically
+function create_writing_page() {
+    // Check if the page already exists
+    $writing_page = get_page_by_path('writing');
+    
+    if (!$writing_page) {
+        // Create the page
+        $page_data = array(
+            'post_title' => 'Writing',
+            'post_name' => 'writing',
+            'post_content' => '', // Empty content since template handles display
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_author' => 1, // Admin user ID
+        );
+        
+        wp_insert_post($page_data);
+    }
+}
+add_action('after_switch_theme', 'create_writing_page');
+
+// Force flush rewrite rules when needed
+function flush_rewrite_rules_on_page_creation() {
+    if (get_option('arenadata_page_created') !== 'yes') {
+        flush_rewrite_rules();
+        update_option('arenadata_page_created', 'yes');
+    }
+}
+add_action('init', 'flush_rewrite_rules_on_page_creation');
+
+// Arena Channel Shortcode
+function arena_channel_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'channel' => 'photo-album-v7neum9xvi4', // default channel
+    ), $atts);
+
+    ob_start();
+    ?>
+    <div id="arena-content" data-channel="<?php echo esc_attr($atts['channel']); ?>" class="arena-grid">
+        <div class="loading-message">Loading Arena content...</div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 add_shortcode('arena_channel', 'arena_channel_shortcode');

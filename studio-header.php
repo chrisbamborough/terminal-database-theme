@@ -6,6 +6,8 @@
 $current_page = get_queried_object();
 $is_studio = is_page('studio');
 $is_arena = is_page('arena');
+$is_writing = is_page('writing');
+$is_arenadata = is_page('arenadata');
 $is_single_post = is_single();
 $is_category = is_category();
 $is_tag = is_tag();
@@ -23,6 +25,18 @@ $is_tag = is_tag();
         <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="breadcrumb-link">STUDIO</a>
         <span class="breadcrumb-separator"> > </span>
         <span class="breadcrumb-current">BLOG</span>
+        
+    <?php elseif ($is_arenadata): ?>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="breadcrumb-link">STUDIO</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">CURATED DATA</span>
+        
+    <?php elseif ($is_writing): ?>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="breadcrumb-link">STUDIO</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">WRITING</span>
         
     <?php elseif ($is_single_post): ?>
         <span class="breadcrumb-separator"> > </span>
@@ -63,8 +77,7 @@ $is_tag = is_tag();
 </div>
 <div class="studio-category-menu">
     <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="studio-category-link">Index</a>
-    <a href="#" class="studio-category-link">Writing</a>
-    <a href="<?php echo esc_url(home_url('/arena/')); ?>" class="studio-category-link">Blog</a>
+    <a href="<?php echo esc_url(home_url('/writing/')); ?>" class="studio-category-link">Writing</a>
     <a href="#" class="studio-category-link about-link" id="about-trigger">About</a>
 </div>
 <div class="about-expander" id="about-expander">
@@ -73,6 +86,10 @@ $is_tag = is_tag();
             <p>This terminal database catalogues creative projects, research, and documentation. Use the search and filter functions to navigate through different types of work.</p>
         <?php elseif ($is_arena): ?>
             <p>Visual research and inspiration collected from various sources. Images are organized by themes and updated regularly.</p>
+        <?php elseif ($is_arenadata): ?>
+            <p>Data and research materials organized and collected from various sources. Content includes links, texts, and references related to computational photography and digital culture.</p>
+        <?php elseif ($is_writing): ?>
+            <p>A collection of articles, blog posts, and external publications exploring computational photography, AI, and digital culture.</p>
         <?php else: ?>
             <p>This is a terminal-style database for documenting and organizing creative work. Navigate through different categories to explore projects, writings, and visual content.</p>
         <?php endif; ?>

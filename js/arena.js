@@ -1,28 +1,121 @@
+console.log("Arena.js script loaded!");
+
 jQuery(document).ready(function ($) {
-  // Get the Arena channel slug from the data attribute
-  const channelSlug = $("#arena-content").data("channel");
-  if (!channelSlug) {
-    console.error("No Arena channel specified");
-    return;
+  console.log("jQuery ready fired!");
+
+  // Test if containers exist
+  console.log("Testing containers:");
+  console.log("Arena content container:", $("#arena-content").length);
+  console.log("Imgexhaust container:", $("#imgexhaust-feed").length);
+
+  // Main initialization function
+  async function initializeArenaFeeds() {
+    try {
+      // First, load the main arena content if it exists (for arena page)
+      const mainArenaContainer = $("#arena-content");
+      if (mainArenaContainer.length) {
+        const channelSlug = mainArenaContainer.data("channel");
+        if (channelSlug) {
+          console.log("Loading main arena feed:", channelSlug);
+          await loadMainArenaFeed(channelSlug);
+          console.log("Main arena feed loaded successfully");
+        }
+      }
+
+      // Load the imgexhaust feed independently (for writing page)
+      const imgexhaustContainer = $("#imgexhaust-feed");
+      if (imgexhaustContainer.length) {
+        const imgChannelSlug = imgexhaustContainer.data("channel");
+        if (imgChannelSlug) {
+          console.log("Loading imgexhaust feed:", imgChannelSlug);
+          console.log("Imgexhaust container found:", imgexhaustContainer);
+          await loadImgexhaustFeed(imgChannelSlug);
+          console.log("Imgexhaust feed loaded successfully");
+        } else {
+          console.log("No imgexhaust channel slug found");
+        }
+      } else {
+        console.log("No imgexhaust container found");
+      }
+    } catch (error) {
+      console.error("Error initializing arena feeds:", error);
+    }
   }
 
-  // Fetch data from Arena API
-  fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      displayArenaContent(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching Arena data:", error);
-      $("#arena-content").html(
-        '<div class="error-message">Error loading Arena content. Please try again later.</div>'
-      );
+  // Load main arena feed (for arena page)
+  function loadMainArenaFeed(channelSlug) {
+    return new Promise((resolve, reject) => {
+      fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          displayArenaContent(data);
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching main Arena data:", error);
+          $("#arena-content").html(
+            '<div class="error-message">Error loading Arena content. Please try again later.</div>'
+          );
+          reject(error);
+        });
     });
+  }
+
+  // Load imgexhaust feed (for writing page)
+  function loadImgexhaustFeed(channelSlug) {
+    const container = $("#imgexhaust-feed");
+
+    console.log("Starting imgexhaust load with channel:", channelSlug);
+    console.log("Container exists:", container.length > 0);
+
+    return new Promise((resolve, reject) => {
+      // Show loading state
+      container.html(
+        '<div class="imgexhaust-item"><div class="post-title">Loading...</div></div>'
+      );
+
+      const apiUrl = `https://api.are.na/v2/channels/${channelSlug}?per=10`;
+      console.log("Making request to:", apiUrl);
+
+      fetch(apiUrl)
+        .then((response) => {
+          console.log("Imgexhaust response status:", response.status);
+          console.log("Imgexhaust response ok:", response.ok);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Imgexhaust raw data:", data);
+          console.log(
+            "Contents length:",
+            data.contents ? data.contents.length : "no contents"
+          );
+          displayImgexhaustContent(data);
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error("Detailed imgexhaust error:", error);
+          container.html(`
+            <div class="imgexhaust-item">
+              <div class="post-title">Error: ${error.message}</div>
+              <div class="post-meta">
+                <span class="post-type">Error</span>
+                <span class="post-date">—</span>
+              </div>
+            </div>
+          `);
+          reject(error);
+        });
+    });
+  }
 
   // Display the Arena content in the grid
   function displayArenaContent(data) {
@@ -186,4 +279,72 @@ jQuery(document).ready(function ($) {
       });
     });
   }
+
+  // Display imgexhaust content
+  function displayImgexhaustContent(data) {
+    console.log("displayImgexhaustContent called with:", data);
+
+    const container = $("#imgexhaust-feed");
+
+    if (!data || !data.contents || data.contents.length === 0) {
+      console.log("No data or contents found");
+      container.html(`
+        <div class="imgexhaust-item">
+          <div class="post-title">No content found</div>
+          <div class="post-meta">
+            <span class="post-type">—</span>
+            <span class="post-date">—</span>
+          </div>
+        </div>
+      `);
+      return;
+    }
+
+    container.empty();
+
+    // Get first 4 blocks
+    const blocks = data.contents.slice(0, 4);
+    console.log("Processing blocks:", blocks.length);
+
+    blocks.forEach((block, index) => {
+      console.log(`Processing block ${index}:`, block);
+
+      const createdDate = new Date(block.created_at);
+      const formattedDate = createdDate
+        .toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+        })
+        .replace(/\//g, "-");
+
+      // Create arena block URL
+      const arenaBlockUrl = `https://www.are.na/block/${block.id}`;
+
+      // Get source URL if available, otherwise use arena block URL
+      const sourceUrl = block.source?.url || arenaBlockUrl;
+
+      const blockHtml = `
+        <div class="imgexhaust-item">
+          <div class="post-title">
+            <a href="${arenaBlockUrl}" target="_blank" rel="noopener noreferrer">
+              ${block.title || "Untitled"}
+            </a>
+          </div>
+          <div class="post-meta">
+            <a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" class="post-type">
+              ${block.class || "Block"}
+            </a>
+            <span class="post-date">${formattedDate}</span>
+          </div>
+        </div>
+      `;
+
+      container.append(blockHtml);
+    });
+
+    console.log("Imgexhaust content display complete");
+  }
+
+  // Start the initialization process
+  initializeArenaFeeds();
 });
