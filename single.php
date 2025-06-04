@@ -1,9 +1,11 @@
 <?php
 /**
- * Template for displaying all single posts
+ * Template for displaying single posts
  * 
  * @package Terminal_Database
  */
+
+// Don't use get_header() to avoid theme elements
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -11,58 +13,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class('terminal-body single-post'); ?>>
+<body <?php body_class('single-post-page'); ?>>
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
-    <div class="terminal-header">
-        <div class="terminal-navigation">
-            <a href="<?php echo esc_url(home_url('/studio/')); ?>" class="terminal-back">< BACK TO STUDIO</a>
-        </div>
-        <!-- <h1 class="database-title"><?php the_title(); ?></h1> -->
+    <!-- Logo and Menu Header with breadcrumbs -->
+    <div class="page-header">
+        <?php include get_stylesheet_directory() . '/studio-header.php'; ?>
     </div>
-
-    <div class="entry-content">
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            
-            <div class="entry-meta">
-                <?php 
-                // Get categories
-                $categories = get_the_category();
-                if ($categories) : ?>
-                    <div class="entry-categories">
-                        <span class="meta-label">MEDIA:</span>
-                        <?php foreach($categories as $category) : ?>
-                            <span class="meta-value"><?php echo esc_html($category->name); ?></span>
-                        <?php endforeach; ?>
+    
+    <!-- Page Content -->
+    <div class="page-content" id="single-post-content">
+        <?php while (have_posts()) : the_post(); ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <header class="entry-header">
+                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                    <div class="entry-meta">
+                        <span class="posted-on"><?php echo get_the_date(); ?></span>
+                        <?php
+                        $categories = get_the_category();
+                        if (!empty($categories)) {
+                            echo ' | <span class="categories">';
+                            $cat_links = array();
+                            foreach ($categories as $category) {
+                                $cat_links[] = '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . $category->name . '</a>';
+                            }
+                            echo implode(', ', $cat_links);
+                            echo '</span>';
+                        }
+                        ?>
                     </div>
-                <?php endif; ?>
-                
-                <?php 
-                // Get tags
-                $tags = get_the_tags();
-                if ($tags) : ?>
-                    <div class="entry-tags">
-                        <span class="meta-label">INTEREST:</span>
-                        <?php foreach($tags as $tag) : ?>
-                            <span class="meta-value"><?php echo esc_html($tag->name); ?></span>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-                
-                <div class="entry-date">
-                    <span class="meta-label">DATE:</span>
-                    <span class="meta-value"><?php echo get_the_date(); ?></span>
-                </div>
-            </div>
+                </header>
 
-            <div class="entry-main">
-                <div class="entry-text">
+                <div class="entry-content">
                     <?php the_content(); ?>
                 </div>
-            </div>
-            
-        <?php endwhile; endif; ?>
+
+                <footer class="entry-footer">
+                    <?php
+                    $tags = get_the_tags();
+                    if ($tags) {
+                        echo '<div class="tags-links">Tags: ';
+                        $tag_links = array();
+                        foreach ($tags as $tag) {
+                            $tag_links[] = '<a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . $tag->name . '</a>';
+                        }
+                        echo implode(', ', $tag_links);
+                        echo '</div>';
+                    }
+                    ?>
+                </footer>
+            </article>
+        <?php endwhile; ?>
     </div>
 </div>
 

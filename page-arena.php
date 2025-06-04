@@ -17,12 +17,7 @@
 <?php wp_body_open(); ?>
 
 <div class="terminal-container">
-    <!-- Navigation Header -->
-    <div class="terminal-header">
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="terminal-back"> < HOME</a>
-    </div>
-    
-    <!-- Logo and Menu Header -->
+    <!-- Logo and Menu Header with breadcrumbs -->
     <div class="page-header">
         <?php include get_stylesheet_directory() . '/studio-header.php'; ?>
     </div>
