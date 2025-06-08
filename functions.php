@@ -197,9 +197,8 @@ add_shortcode('terminal_database', 'terminal_database_shortcode');
 
 // Enqueue Are.na JavaScript
 function terminal_enqueue_arena_script() {
-    if (is_page('arena') || is_page('writing') || is_page('arenadata')) {
-        wp_enqueue_script('arena-script', get_stylesheet_directory_uri() . '/js/arena.js', array('jquery'), '1.0', true);
-    }
+    // Load arena.js on all pages since the ticker appears site-wide
+    wp_enqueue_script('arena-script', get_stylesheet_directory_uri() . '/js/arena.js', array('jquery'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'terminal_enqueue_arena_script');
 

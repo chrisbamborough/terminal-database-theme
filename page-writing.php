@@ -84,7 +84,8 @@
                         $data = json_decode($body, true);
                         
                         if ($data && isset($data['contents']) && !empty($data['contents'])) {
-                            $latest_block = $data['contents'][0]; // Get the most recent block
+                            // Get the most recent block (last in the array)
+                            $latest_block = end($data['contents']); // Changed from $data['contents'][0]
                     ?>
                         <div class="featured-post">
                             <?php if (isset($latest_block['image']) && $latest_block['image']): ?>

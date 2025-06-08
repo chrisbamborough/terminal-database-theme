@@ -69,10 +69,11 @@ h6,
 }
 
 .terminal-container {
-  padding: 0 1rem;
+  padding: 0 2rem 1rem 2rem; /* Add horizontal padding */
   background-color: #ffffff;
   color: #111;
-  max-width: 1200px; /* Add max-width for consistency */
+  width: 100%; /* Full browser width */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .terminal-header {
@@ -250,8 +251,6 @@ h6,
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
   background: none;
   box-shadow: none;
   border: none;
@@ -294,6 +293,9 @@ h6,
 #arena-grid-content {
   background: #fff;
   color: #111;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .arena-controls {
@@ -306,6 +308,9 @@ h6,
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .arena-block {
@@ -562,6 +567,9 @@ body.page-landing .terminal-container {
 #writing-content {
   background: #fff;
   color: #111;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .writing-grid {
@@ -569,6 +577,9 @@ body.page-landing .terminal-container {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .writing-column {
@@ -697,11 +708,15 @@ body.page-landing .terminal-container {
   margin-top: 3rem;
 }
 
+/* All Writing Posts Grid - Card Layout */
 .writing-posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .writing-post-card {
@@ -804,25 +819,80 @@ body.page-landing .terminal-container {
   text-transform: lowercase;
 }
 
+/* Arena Ticker Styles */
+.arena-ticker {
+  background: #fff;
+  color: #111;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+  font-family: "gridlite-pe-variable", sans-serif;
+  font-variation-settings: "BACK" 1, "ELSH" 3, "RECT" 1, "wght" 900;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  margin: 1rem 0; /* Keep equal margins */
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: scroll-left 30s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translate3d(20%, 0, 0); /* Start off-screen right */
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0); /* End off-screen left */
+  }
+}
+
+.ticker-text {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-right: 100vw; /* Add space so text loops seamlessly */
+}
+
+.arena-ticker:hover {
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .terminal-container {
+    padding: 0 1rem 1rem 1rem; /* Reduce padding on mobile */
+  }
+
   .writing-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .card-content {
-    padding-right: 1rem;
+  .arena-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
-  .card-author-info {
-    position: static;
-    margin-bottom: 1rem;
-    align-self: flex-start;
+  .arena-ticker {
+    font-size: 12px;
+    padding: 10px 0;
   }
 
-  .card-title {
-    padding-right: 0;
+  .ticker-content {
+    animation: scroll-left 30s linear infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  .arena-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
 
